@@ -28,11 +28,16 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Fonts
+  # Nerdfonts repackage fonts with extra icons
+  fonts.packages = with pkgs; [ nerd-fonts.adwaita-mono ];
+  fonts.fontconfig.defaultFonts.monospace = [ "AdwaitaMono Nerd Font Mono" ];
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
-  };
+  }; 
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -85,21 +90,32 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gnomeExtensions.pano
-    gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect
-
-    htop
-    #rustdesk-flutter
-    localsend
+    #GUI tools
     gparted
-
-    wl-clipboard
+    localsend
+    
+    #CLI tools
+    htop
+    
+    # Github
     git
     gh
+
+    # Set up GPU passthrough
     pciutils    
     lshw
     glxinfo
+
+    # Neovim clipboard
+    wl-clipboard
+
+    # NvChad
+    unzip
+
+    # GNOME extensions
+    gnomeExtensions.pano
+    gnomeExtensions.appindicator
+    gnomeExtensions.gsconnect
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
