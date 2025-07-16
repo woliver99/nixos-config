@@ -57,7 +57,8 @@
     wl-clipboard
 
     # NvChad
-    unzip
+    gcc
+    ripgrep
 
     # GNOME extensions
     gnomeExtensions.pano
