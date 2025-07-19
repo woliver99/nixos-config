@@ -13,6 +13,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       youtube-music
+      vscode
     ];
   };
 
@@ -34,12 +35,16 @@
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
+  # Install Docker
+  #virtualisation.docker.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #GUI tools
     gparted
     localsend
+    filezilla
     
     #CLI tools
     htop
