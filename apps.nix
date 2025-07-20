@@ -5,6 +5,10 @@
 { config, pkgs, ... }:
 
 {
+  programs.bash.shellAliases = {
+    editconfig = "cd /etc/nixos/";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # Installation dependent
   users.users.woliver99 = {
@@ -52,11 +56,6 @@
     # Github
     git
     gh
-
-    # Set up GPU passthrough
-    pciutils    
-    lshw
-    glxinfo
 
     # Neovim clipboard
     wl-clipboard
