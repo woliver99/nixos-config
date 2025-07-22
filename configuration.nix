@@ -8,40 +8,37 @@
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
+    ./display_manager/display-manager.nix
+    ./gpu/gpu.nix
     ./network.nix
     ./apps.nix
-    ./gpu.nix
+    ./printer.nix
   ];
   
   # Installation dependent
   networking.hostName = "oliver-msi-laptop-nixos";
 
   # Set your time zone.
+  # Installation dependent
   time.timeZone = "America/Toronto";
 
   # Select internationalisation properties.
+  # Installation dependent
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Fonts
-  # Nerdfonts repackage fonts with extra icons
-  fonts.packages = with pkgs; [ nerd-fonts.adwaita-mono ];
-  fonts.fontconfig.defaultFonts.monospace = [ "AdwaitaMono Nerd Font Mono" ];
-
   # Configure keymap in X11
+  # Installation dependent
   services.xserver.xkb = {
     layout = "us";
     variant = "";
-  }; 
+  };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # Fonts
+  fonts = {
+    # Nerdfonts are repackaged fonts with extra icons
+    packages = with pkgs; [ nerd-fonts.adwaita-mono ];
+    fontconfig.defaultFonts.monospace = [ "AdwaitaMono Nerd Font Mono" ];
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

@@ -1,6 +1,6 @@
 # /etc/nixos/bootloader.nix
 #
-# This file contains all settings related to the bootloader
+# Bootloader settings
 
 { config, pkgs, ... }:
 

@@ -21,6 +21,9 @@
     ];
   };
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Install Flatpak
   # Don't forget to add the default repository (per user): flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   services.flatpak.enable = true;
@@ -31,9 +34,6 @@
   # Install Steam
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Install Neovim
   programs.neovim.enable = true;
@@ -63,10 +63,5 @@
     # NvChad
     gcc
     ripgrep
-
-    # GNOME extensions
-    gnomeExtensions.pano
-    gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect
   ];
 }
