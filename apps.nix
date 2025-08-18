@@ -14,7 +14,7 @@
   users.users.woliver99 = {
     isNormalUser = true;
     description = "Oliver Wuthrich-Giroux";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
     packages = with pkgs; [
       youtube-music
       vscode
@@ -40,7 +40,10 @@
   programs.neovim.defaultEditor = true;
 
   # Install Docker
-  #virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
+
+  # Install Android ADB
+  programs.adb.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -49,7 +52,16 @@
     gparted
     localsend
     filezilla
-    
+    pdfarranger
+    android-studio
+    linphone
+    jami
+
+    # LibreOffice
+    libreoffice-still
+    hunspell
+    hunspellDicts.en_CA
+
     #CLI tools
     htop
     
