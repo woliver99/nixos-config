@@ -40,7 +40,7 @@
   programs.neovim.defaultEditor = true;
 
   # Install Docker
-  virtualisation.docker.enable = true;
+  #virtualisation.docker.enable = true;
 
   # Install Android ADB
   programs.adb.enable = true;

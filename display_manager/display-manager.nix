@@ -7,7 +7,7 @@
 {
   # Choose your display manager
   imports = [
-    ./gnome.nix
+    ./gnome/gnome.nix
   ];
 
   # Enable the X11 windowing system.
