@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ./login-screen.nix
     # Broken
     #./voice-typing.nix
   ];
@@ -19,5 +20,6 @@
     gnomeExtensions.pano
     gnomeExtensions.appindicator
     gnomeExtensions.gsconnect 
+    gnomeExtensions.color-picker
   ];
 }

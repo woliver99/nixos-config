@@ -11,7 +11,7 @@
     ./display_manager/display-manager.nix
     ./gpu/gpu.nix
     ./network.nix
-    ./apps.nix
+    ./apps/apps.nix
     ./printer.nix
   ];
   
@@ -55,6 +55,9 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  # Enable drawing tablet drivers
+  hardware.opentabletdriver.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

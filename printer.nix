@@ -13,6 +13,10 @@
   # Enable printing
   services.printing = {
     enable = true;
+
+    # Disable auto adding printers
+    browsed.enable = false;
+
     drivers = [
       # Epson
       pkgs.epson-escpr
