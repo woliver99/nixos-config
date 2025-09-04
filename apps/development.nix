@@ -10,8 +10,13 @@
   };
 
   # Install Neovim
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+
+    viAlias = true;
+    vimAlias = true;
+  };
 
   # Install Docker
   #virtualisation.docker.enable = true;
@@ -26,6 +31,7 @@
 
     # IDEs
     android-studio
+    jetbrains.idea-community-bin
     arduino-ide
     vscode
 
