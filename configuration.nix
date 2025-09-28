@@ -13,6 +13,7 @@
     ./network.nix
     ./apps/apps.nix
     ./printer.nix
+    ./remote-desktop.nix
   ];
   
   # Installation dependent

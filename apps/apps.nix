@@ -1,6 +1,6 @@
 # This file contains all settings related to apps
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -16,14 +16,16 @@
   users.users.woliver99 = {
     isNormalUser = true;
     description = "Oliver Wuthrich-Giroux";
-    
+
     packages = with pkgs; [
       youtube-music
     ];
 
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -38,17 +40,18 @@
   # Install Steam
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
-  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #GUI tools
+    #GUI
     gparted
     localsend
     filezilla
     pdfarranger
-    linphone 
+    linphone
+    vlc
+    brave
 
     # LibreOffice
     libreoffice-still
@@ -57,5 +60,6 @@
 
     #CLI tools
     htop
+    unzip
   ];
 }

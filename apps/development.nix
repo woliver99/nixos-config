@@ -1,12 +1,15 @@
 # This file contains all settings related to development
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.woliver99 = {
     # adbusers : Allow interacting with adb as a user
     # dialout : Arduino IDE (allow serial connection)
-    extraGroups = [ "adbusers" "dialout" ];
+    extraGroups = [
+      "adbusers"
+      "dialout"
+    ];
   };
 
   # Install Neovim
@@ -30,7 +33,7 @@
     gh
 
     # IDEs
-    android-studio
+    #android-studio
     jetbrains.idea-community-bin
     arduino-ide
     vscode
@@ -43,5 +46,15 @@
     wl-clipboard
     gcc
     ripgrep
+
+    # Language Servers
+    lua-language-server
+    nixd
+
+    # Formatters
+    nixfmt-rfc-style
   ];
+
+  # For PlatformIO
+  services.udev.packages = with pkgs; [ platformio-core.udev ];
 }
