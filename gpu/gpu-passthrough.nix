@@ -25,7 +25,7 @@
 
     # AMD drivers
     "amdgpu"
-    "radeon"  # For older AMD cards
+    "radeon" # For older AMD cards
 
     # Controller drivers
     "xpad"
@@ -36,16 +36,20 @@
 
   virtualisation.libvirtd = {
     enable = true;
-    qemu.ovmf = {
-      enable = true;
-      packages = [ pkgs.OVMFFull.fd ];
-    };  
+    #qemu.ovmf = {
+    #  enable = true;
+    #  packages = [ pkgs.OVMFFull.fd ];
+    #};
   };
-  
+
   virtualisation.spiceUSBRedirection.enable = true;
+  users.groups.libvirtd.members = ["woliver99"];
+  services.spice-vdagentd.enable = true;
 
   programs.virt-manager.enable = true;
   # Installation dependent
-  users.users.woliver99.extraGroups = [ "libvirtd" "spice-usb" ];
+  users.users.woliver99.extraGroups = [
+    "libvirtd"
+    "spice-usb"
+  ];
 }
-

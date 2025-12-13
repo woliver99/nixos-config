@@ -1,6 +1,6 @@
 # This file contains all settings related to networking
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   networking.networkmanager.enable = true;
@@ -9,17 +9,33 @@
   # GSConnect: 1714-1764
   # WireGuard: 51821
   # Gnome Remote Desktop 2: 3390 (T+U)
+  # CircularPath: 8000 (T)
   networking.firewall = {
     enable = true;
 
-    allowedTCPPorts = [ 53317 3390 ];
+    allowedTCPPorts = [
+      53317
+      3390
+      8000
+      11434
+    ];
     allowedTCPPortRanges = [
-      { from = 1714; to = 1764; }
+      {
+        from = 1714;
+        to = 1764;
+      }
     ];
 
-    allowedUDPPorts = [ 53317 51821 3390 ];
+    allowedUDPPorts = [
+      53317
+      51821
+      3390
+    ];
     allowedUDPPortRanges = [
-      { from = 1714; to = 1764; }
+      {
+        from = 1714;
+        to = 1764;
+      }
     ];
 
     # Allow WireGuard traffic through the reverse path filter

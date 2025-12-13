@@ -14,6 +14,7 @@
     ./apps/apps.nix
     ./printer.nix
     ./remote-desktop.nix
+    #./cachix.nix
   ];
   
   # Installation dependent

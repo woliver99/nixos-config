@@ -49,7 +49,6 @@
     localsend
     filezilla
     pdfarranger
-    linphone
     vlc
     brave
 

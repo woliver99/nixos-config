@@ -1,25 +1,29 @@
-# /etc/nixos/display_manager/gnome/gnome.nix
-#
 # GNOME desktop environment configuration
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./login-screen.nix
-    # Broken
-    #./voice-typing.nix
+  ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      gnomeExtensions = prev.gnomeExtensions // {
+        copyous = prev.callPackage ./copyous.nix { };
+      };
+    })
   ];
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # GNOME extensions (enable them with the extensions app)
   environment.systemPackages = with pkgs; [
-    gnomeExtensions.pano
+    gnomeExtensions.copyous
     gnomeExtensions.appindicator
-    gnomeExtensions.gsconnect 
+    gnomeExtensions.gsconnect
     gnomeExtensions.color-picker
   ];
 }

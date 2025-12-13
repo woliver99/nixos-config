@@ -1,7 +1,12 @@
 # This file contains all settings related to development
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
+let
+  unstable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  }) { config = config.nixpkgs.config; };
+in
 {
   users.users.woliver99 = {
     # adbusers : Allow interacting with adb as a user
@@ -22,7 +27,19 @@
   };
 
   # Install Docker
-  #virtualisation.docker.enable = true;
+  virtualisation = {
+    #docker.enable = true;
+
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   # Install Android ADB
   programs.adb.enable = true;
@@ -33,10 +50,13 @@
     gh
 
     # IDEs
-    #android-studio
+    android-studio
+    unstable.antigravity-fhs
     jetbrains.idea-community-bin
     arduino-ide
     vscode
+
+    unstable.flutter
 
     # Python
     python313
