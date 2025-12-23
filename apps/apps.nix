@@ -7,24 +7,11 @@
     ./development.nix
   ];
 
-  programs.bash.shellAliases = {
-    editconfig = "cd /etc/nixos/";
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # Installation dependent
   users.users.woliver99 = {
-    isNormalUser = true;
-    description = "Oliver Wuthrich-Giroux";
-
     packages = with pkgs; [
       youtube-music
     ];
 
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
   };
 
   # Allow unfree packages

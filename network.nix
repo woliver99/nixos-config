@@ -1,9 +1,15 @@
 # This file contains all settings related to networking
 
-{ ... }:
+{ pkgs, ... }:
 
 {
   networking.networkmanager.enable = true;
+
+  # VPN
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openvpn
+    networkmanager-l2tp
+  ];
 
   # LocalSend: 53317
   # GSConnect: 1714-1764

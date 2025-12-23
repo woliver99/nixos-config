@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
+    ./users.nix
     ./display_manager/display-manager.nix
     ./gpu/gpu.nix
     ./network.nix
@@ -16,7 +17,7 @@
     ./remote-desktop.nix
     #./cachix.nix
   ];
-  
+
   # Installation dependent
   networking.hostName = "oliver-msi-laptop-nixos";
 
@@ -58,6 +59,14 @@
     #media-session.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    ntfs3g
+  ];
+
+  programs.bash.shellAliases = {
+    editconfig = "cd /etc/nixos/";
+  };
+
   # Enable drawing tablet drivers
   hardware.opentabletdriver.enable = true;
 
@@ -72,7 +81,11 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
