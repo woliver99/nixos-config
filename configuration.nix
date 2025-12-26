@@ -65,6 +65,7 @@
 
   programs.bash.shellAliases = {
     editconfig = "cd /etc/nixos/";
+    explorer = "nautilus . > /dev/null 2>&1";
   };
 
   # Enable drawing tablet drivers
