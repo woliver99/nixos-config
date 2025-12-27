@@ -26,4 +26,15 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.color-picker
   ];
+
+  # Disable mouse acceleration on lockscreen
+  programs.dconf.profiles.gdm.databases = [
+    {
+      settings = {
+        "org/gnome/desktop/peripherals/mouse" = {
+          accel-profile = "flat";
+        };
+      };
+    }
+  ];
 }
