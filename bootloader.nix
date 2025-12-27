@@ -1,8 +1,6 @@
-# /etc/nixos/bootloader.nix
-#
 # Bootloader settings
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   boot.loader = {
@@ -12,7 +10,8 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
-      configurationLimit = 10;
+
+      default = "saved"; # Set the last booted operating system as default 
 
       extraInstallCommands = ''
         cfg=$out/boot/grub/grub.cfg

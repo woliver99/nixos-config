@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./hardware/hardware.nix
     ./bootloader.nix
     ./users.nix
     ./display_manager/display-manager.nix
@@ -15,7 +16,6 @@
     ./apps/apps.nix
     ./printer.nix
     ./remote-desktop.nix
-    #./cachix.nix
   ];
 
   # Installation dependent

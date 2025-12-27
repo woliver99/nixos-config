@@ -1,6 +1,6 @@
-# This file contains all settings related to remoting into the desktop 
+# This file contains all settings related to remoting into the desktop
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # Enable the GNOME RDP components
@@ -11,6 +11,8 @@
     wantedBy = [ "graphical.target" ];
   };
 
-  # Open the default RDP port (3389)
-  networking.firewall.allowedTCPPorts = [ 3389 ];
+  networking.firewall.allowedTCPPorts = [
+    3389 # Start Virtual Session
+    3390 # Connect To Live Session
+  ];
 }
