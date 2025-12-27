@@ -1,0 +1,19 @@
+# Hardware config file
+
+{ ... }:
+
+{
+  # Import your global hardware configuration file here
+  imports = [ ./msi-gl-65-leopard.nix ];
+
+  # Per device config
+  networking.hostName = "oliver-msi-laptop-nixos"; # Device name
+  time.timeZone = "America/Toronto"; # Time zone
+  i18n.defaultLocale = "en_CA.UTF-8"; # Internationalisation properties
+  
+  # Keymap
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+}

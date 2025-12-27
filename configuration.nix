@@ -15,28 +15,8 @@
     ./network.nix
     ./apps/apps.nix
     ./printer.nix
-    ./remote-desktop.nix
   ];
 
-  # Installation dependent
-  networking.hostName = "oliver-msi-laptop-nixos";
-
-  # Set your time zone.
-  # Installation dependent
-  time.timeZone = "America/Toronto";
-
-  # Select internationalisation properties.
-  # Installation dependent
-  i18n.defaultLocale = "en_CA.UTF-8";
-
-  # Configure keymap in X11
-  # Installation dependent
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Fonts
   fonts = {
     # Nerdfonts are repackaged fonts with extra icons
     packages = with pkgs; [ nerd-fonts.adwaita-mono ];
@@ -80,13 +60,6 @@
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
