@@ -47,7 +47,7 @@
   };
 
   # Enable drawing tablet drivers
-  hardware.opentabletdriver.enable = true;
+  #hardware.opentabletdriver.enable = true; # For some reason this is causing crashes keep disabled
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

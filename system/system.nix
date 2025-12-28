@@ -5,7 +5,7 @@
 {
   imports = [
     ./presets/hardware/msi-gl65-leopard-10sfk.nix # Import your hardware preset here
-    ./presets/bootloader/grub.nix # Import your bootloader preset here
+    ./presets/bootloader/grub/uefi.nix # Import your bootloader preset here
     ./presets/users/woliver99.nix # Import your user preset here
 
     # Add desired features here
