@@ -52,7 +52,7 @@ in
     # IDEs
     android-studio
     unstable.antigravity-fhs
-    jetbrains.idea-community-bin
+    jetbrains.idea-oss
     arduino-ide
     vscode
 

@@ -7,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./hardware/hardware.nix
+    ./system/system.nix
     ./bootloader.nix
     ./users.nix
     ./display_manager/display-manager.nix
