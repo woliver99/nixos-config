@@ -9,6 +9,8 @@
     ./presets/users/woliver99.nix # Import your user preset here
 
     # Add desired features here
+    ./features/grub-firmware-entry.nix # Adds a "Reboot to UEFI" entry
+    ./features/grub-dualboot.nix # Adds other operating systems (like Windows) to grub
     ./features/ssh.nix
     ./features/remote-desktop.nix
   ];

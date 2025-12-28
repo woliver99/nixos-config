@@ -1,4 +1,4 @@
-# Add reboot to BIOS entry in grub
+# Adds a dedicated menu entry to GRUB to reboot directly into UEFI Firmware (BIOS) settings.
 
 { ... }:
 
