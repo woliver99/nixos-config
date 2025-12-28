@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     ./system/system.nix
     ./bootloader.nix
-    ./users.nix
     ./display_manager/display-manager.nix
     ./gpu/gpu.nix
     ./network.nix
