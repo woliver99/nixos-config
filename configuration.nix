@@ -8,7 +8,6 @@
   imports = [
     ./hardware-configuration.nix
     ./system/system.nix
-    ./bootloader.nix
     ./display_manager/display-manager.nix
     ./gpu/gpu.nix
     ./network.nix

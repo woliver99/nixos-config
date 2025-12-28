@@ -1,4 +1,4 @@
-# Bootloader settings
+# Grub bootloader preset
 
 { pkgs, ... }:
 
