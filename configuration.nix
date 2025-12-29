@@ -6,7 +6,6 @@
     ./system/system.nix
     ./gpu/gpu.nix
     ./network.nix
-    ./printer.nix
   ];
 
   # Enable drawing tablet drivers

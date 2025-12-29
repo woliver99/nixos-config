@@ -8,14 +8,16 @@
     ./presets/bootloader/grub/uefi.nix # Import your bootloader preset here
     ./presets/users/woliver99.nix # Import your user preset here
     ./presets/editor/neovim.nix # Import your editor preset here (comment out if all you need is nano since thats installed by default)
-    ./presets/display-manager/gnome.nix # Import your desktop environment here 
+    ./presets/display-manager/gnome.nix # Import your desktop environment here
     ./presets/apps/developer.nix # Import your apps preset here (options: essentials, full, developer)
 
     # Add desired features here
     ./features/grub-firmware-entry.nix # Adds a "Reboot to UEFI" entry
     ./features/grub-dualboot.nix # Adds other operating systems (like Windows) to grub
     ./features/flatpak.nix # Installs Flatpak for easy sandbox app installs for users
+    ./features/printing.nix # Adds support for most printers
     ./features/steam.nix # Installs Steam
+    ./features/drawing-tablet.nix # Adds support for most drawing tablets
     ./features/ssh.nix # Installs ssh only accessible via public keys (disables password logins)
     ./features/remote-desktop.nix # Installs Gnome remote desktop which works over rdp (should only be enabled when using Gnome)
     ./features/shell-shortcuts.nix # Usefull shell shortcuts I like to have in my terminal
@@ -36,5 +38,15 @@
   # Add extra apps here
   environment.systemPackages = with pkgs; [
     youtube-music # Free Youtube Music with adblocker
+  ];
+
+  # Extra printer support (./features/printing.nix)
+  services.printing.drivers = [
+    pkgs.epson-escpr # Epson
+  ];
+
+  # Extra scanner support (./features/printing.nix)
+  hardware.sane.extraBackends = [
+    pkgs.epsonscan2 # Epson
   ];
 }
