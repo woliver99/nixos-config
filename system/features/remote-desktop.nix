@@ -11,8 +11,14 @@
     wantedBy = [ "graphical.target" ];
   };
 
-  networking.firewall.allowedTCPPorts = [
-    3389 # Start Virtual Session
-    3390 # Connect To Live Session
-  ];
+  networking.firewall = {
+    allowedTCPPorts = [
+      3389 # Start Virtual Session
+      3390 # Connect To Live Session
+    ];
+    allowedUDPPorts = [
+      3389 # Start Virtual Session
+      3390 # Connect To Live Session
+    ];
+  };
 }

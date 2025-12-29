@@ -14,8 +14,10 @@
     # Add desired features here
     ./features/grub-firmware-entry.nix # Adds a "Reboot to UEFI" entry
     ./features/grub-dualboot.nix # Adds other operating systems (like Windows) to grub
+    ./features/firewall.nix # Enables the system firewall (might break some apps if not configured properly)
     ./features/flatpak.nix # Installs Flatpak for easy sandbox app installs for users
     ./features/printing.nix # Adds support for most printers
+    ./features/vpn.nix # Adds support for most vpns
     ./features/steam.nix # Installs Steam
     ./features/drawing-tablet.nix # Adds support for most drawing tablets
     ./features/ssh.nix # Installs ssh only accessible via public keys (disables password logins)
@@ -39,6 +41,14 @@
   environment.systemPackages = with pkgs; [
     youtube-music # Free Youtube Music with adblocker
   ];
+
+  # Extra firewall configuration (./features/firewall.nix)
+  networking.firewall = {
+    allowedTCPPorts = [
+      8000 # CircularPath
+      11434 # Ollama
+    ];
+  };
 
   # Extra printer support (./features/printing.nix)
   services.printing.drivers = [

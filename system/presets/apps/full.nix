@@ -27,4 +27,13 @@
     hunspell
     hunspellDicts.en_CA
   ];
+
+  networking.firewall = {
+    allowedTCPPorts = [
+      53317 # Localsend
+    ];
+    allowedUDPPorts = [
+      53317 # Localsend
+    ];
+  };
 }

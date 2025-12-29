@@ -5,11 +5,7 @@
     ./hardware-configuration.nix
     ./system/system.nix
     ./gpu/gpu.nix
-    ./network.nix
   ];
-
-  # Enable drawing tablet drivers
-  #hardware.opentabletdriver.enable = true; # For some reason this is causing crashes keep disabled
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

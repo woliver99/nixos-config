@@ -12,6 +12,9 @@
     })
   ];
 
+  # Enable Gnome networking
+  networking.networkmanager.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -26,6 +29,23 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.color-picker
   ];
+
+  
+  networking.firewall = {
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # GSConnect
+    ];
+
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # GSConnect
+    ];
+  };
 
   # Disable mouse acceleration on lockscreen
   programs.dconf.profiles.gdm.databases = [
