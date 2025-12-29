@@ -26,15 +26,6 @@
     pulse.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    ntfs3g
-  ];
-
-  programs.bash.shellAliases = {
-    editconfig = "cd /etc/nixos/";
-    explorer = "nautilus . > /dev/null 2>&1";
-  };
-
   # Enable drawing tablet drivers
   #hardware.opentabletdriver.enable = true; # For some reason this is causing crashes keep disabled
 

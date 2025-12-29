@@ -17,6 +17,7 @@
     ./features/steam.nix # Installs Steam
     ./features/ssh.nix # Installs ssh only accessible via public keys (disables password logins)
     ./features/remote-desktop.nix # Installs Gnome remote desktop which works over rdp (should only be enabled when using Gnome)
+    ./features/shell-shortcuts.nix # Usefull shell shortcuts I like to have in my terminal
   ];
 
   # Per device config

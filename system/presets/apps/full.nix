@@ -11,6 +11,9 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
+    ntfs3g # Needed for using gparted on ntfs partitions
+
+    # -- GUI --
     gparted
     localsend
     filezilla
