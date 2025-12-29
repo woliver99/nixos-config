@@ -7,7 +7,8 @@
     ./presets/hardware/msi-gl65-leopard-10sfk.nix # Import your hardware preset here
     ./presets/bootloader/grub/uefi.nix # Import your bootloader preset here
     ./presets/users/woliver99.nix # Import your user preset here
-    ./presets/editor/neovim.nix # Import your editor preset here (disable if all you need is nano since thats installed by default)
+    ./presets/editor/neovim.nix # Import your editor preset here (comment out if all you need is nano since thats installed by default)
+    ./presets/display-manager/gnome.nix # Import your desktop environment here 
     ./presets/apps/developer.nix # Import your apps preset here (options: essentials, full, developer)
 
     # Add desired features here
