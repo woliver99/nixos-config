@@ -1,0 +1,4 @@
+[submodule "nixos-hardware"]
+	path = nixos-hardware
+	url = https://github.com/NixOS/nixos-hardware.git
+	branch = master
