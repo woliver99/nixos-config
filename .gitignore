@@ -1,5 +1,6 @@
 /hardware-configuration.nix
 /configuration.nix
+/system/system.nix
 
 # Any file called custom.nix in any folder will be excluded
 custom.nix

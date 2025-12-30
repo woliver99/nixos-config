@@ -3,14 +3,12 @@
 { config, ... }:
 
 {
-  imports = [
-    ./hybrid-graphics.nix # Enable if you have a iGPU or a second GPU along with your Nvidia graphics card
-  ];
-
   # Load Nvidia drivers
   services.xserver.videoDrivers = [
     "nvidia"
   ];
+
+  hardware.graphics.enable = true;
 
   hardware.nvidia = {
     # Modesetting is required.

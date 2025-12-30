@@ -1,10 +1,25 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
     ./system/system.nix
-    ./gpu/gpu.nix
+  ];
+
+  networking.hostName = "oliver-msi-laptop-nixos"; # Device name
+  time.timeZone = "America/Toronto"; # Time zone
+  i18n.defaultLocale = "en_CA.UTF-8"; # Internationalisation properties
+  nixpkgs.config.allowUnfree = true; # Allow proprietary software to be installed (recommended to be enable)
+
+  # Keymap
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+  # Add extra apps here
+  environment.systemPackages = with pkgs; [
+    #youtube-music # Free Youtube Music with adblocker
   ];
 
   # This value determines the NixOS release from which the default

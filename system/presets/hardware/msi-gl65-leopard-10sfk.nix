@@ -5,14 +5,20 @@
 {
   # -- Config --
   imports = [
-
+    ../gpu/nvidia-hybrid-graphics.nix # Import Nvidia hybrid graphics preset
   ];
+
+  # Configure hybrid graphics
+  hardware.nvidia.prime = {
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
   networking.interfaces.enp3s0.wakeOnLan.enable = true; # Wake On Lan
 
   # -- Fixes --
   boot.kernelParams = [ "nvme_core.default_ps_max_latency_us=0" ]; # Fix NVMe SSD timeouts (prevent deep sleep)
-  boot.blacklistedKernelModules = [ "ucsi_ccg" ]; # There is no usb-c display port support on the laptop but linux thinks there is which causes crashes and hangs
+  boot.blacklistedKernelModules = [ "ucsi_ccg" ]; # There is no usb-c display port support on the laptop but linux thinks there is
   hardware.nvidia.open = pkgs.lib.mkForce false; # When enabled causes hardware lockups, graphical glitches and silent freezes
 
   # Disable all sleep and suspend states since it causes many problems with the Nvidia drivers
