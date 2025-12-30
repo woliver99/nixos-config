@@ -8,13 +8,10 @@
     ../../../nixos-hardware/msi/gl65/10SDR-492/default.nix # Import from nixos-hardware repository
   ];
 
-  # Nvidia hybrid graphics
+  # Make everything run on the gpu by default
   hardware.nvidia.prime = {
     offload.enable = false;
     sync.enable = true;
-
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
   };
 
   # Enable battery saver specialisation from nixos-hardware
@@ -32,12 +29,15 @@
   networking.interfaces.enp3s0.wakeOnLan.enable = true; # Wake On Lan
 
   # -- Fixes --
+
+  # SSD fixes (probably not a laptop problem but keeping it here anyways)
   boot.kernelParams = [
     "nvme_core.default_ps_max_latency_us=0" # Fix NVMe SSD timeouts (prevent deep sleep)
     "pcie_aspm=off" # Uses more power but testing if this fixes a crash on boot
   ];
-  boot.blacklistedKernelModules = [ "ucsi_ccg" ]; # There is no usb-c display port support on the laptop but linux thinks there is
 
+  boot.blacklistedKernelModules = [ "ucsi_ccg" ]; # The laptop lacks USB-C display hardware, but the kernel attempts to initialize it anyway, causing a boot delay.
+  
   # Disable all sleep and suspend states since it causes many problems with the Nvidia drivers
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
