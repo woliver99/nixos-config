@@ -1,11 +1,12 @@
-# Preset for the GL65 Leopard 10SFK laptop: https://www.msi.com/Laptop/GL65-Leopard-10SX/Specification
+# Preset for the GL65 Leopard laptop: https://www.msi.com/Laptop/GL65-Leopard-10SX/Specification
+# Tested on: GL65 Leopard 10SFK-206CA
 
 { lib, ... }:
 
 {
   # -- Config --
   imports = [
-    ../../../nixos-hardware/msi/gl65/10SDR-492/default.nix # Import from nixos-hardware repository
+    ../../../nixos-hardware/msi/gl65/default.nix # Import from nixos-hardware repository
   ];
 
   # Make everything run on the gpu by default
@@ -35,8 +36,6 @@
     "nvme_core.default_ps_max_latency_us=0" # Fix NVMe SSD timeouts (prevent deep sleep)
     "pcie_aspm=off" # Uses more power but testing if this fixes a crash on boot
   ];
-
-  boot.blacklistedKernelModules = [ "ucsi_ccg" ]; # The laptop lacks USB-C display hardware, but the kernel attempts to initialize it anyway, causing a boot delay.
   
   # Disable all sleep and suspend states since it causes many problems with the Nvidia drivers
   systemd.targets.sleep.enable = false;
