@@ -6,7 +6,7 @@
 {
   # -- Config --
   imports = [
-    ../../../nixos-hardware/msi/gl65/default.nix # Import from nixos-hardware repository
+    ../../nixos-hardware/msi/gl65/default.nix # Import from nixos-hardware repository
   ];
 
   # Make everything run on the gpu by default
