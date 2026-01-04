@@ -12,15 +12,12 @@
     })
   ];
 
-  # Enable Gnome networking
-  networking.networkmanager.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
   # Enable the GNOME Desktop Environment.
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+
+  # Enable GNOME networking
+  networking.networkmanager.enable = true;
 
   # GNOME extensions (enable them with the extensions app)
   environment.systemPackages = with pkgs; [
@@ -30,7 +27,6 @@
     gnomeExtensions.color-picker
   ];
 
-  
   networking.firewall = {
     allowedTCPPortRanges = [
       {
@@ -47,16 +43,29 @@
     ];
   };
 
-  # Disable mouse acceleration on lockscreen
-  programs.dconf.profiles.gdm.databases = [
-    {
-      settings = {
-        "org/gnome/desktop/peripherals/mouse" = {
-          accel-profile = "flat";
+  programs.dconf.profiles = {
+    # Settings for the Login Screen (GDM)
+    gdm.databases = [
+      {
+        settings = {
+          "org/gnome/desktop/peripherals/mouse" = {
+            accel-profile = "flat";
+          };
         };
-      };
-    }
-  ];
+      }
+    ];
+
+    # Settings for User Sessions (System-wide defaults for all users)
+    user.databases = [
+      {
+        settings = {
+          "org/gnome/desktop/wm/preferences" = {
+            button-layout = ":minimize,maximize,close";
+          };
+        };
+      }
+    ];
+  };
 
   fonts = {
     # Nerdfonts are repackaged fonts with extra icons
