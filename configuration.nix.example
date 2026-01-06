@@ -1,3 +1,5 @@
+# Use this template outside the nixos-system repository (ex: /etc/nixos/configuration.nix when the repository exists at /etc/nixos/nixos-system/)
+
 { pkgs, ... }:
 
 {
@@ -39,7 +41,7 @@
 
   # Add extra apps here
   environment.systemPackages = with pkgs; [
-    youtube-music # Free Youtube Music with adblocker
+    #youtube-music # Free Youtube Music with adblocker
   ];
 
   # -- Feature configuration --
