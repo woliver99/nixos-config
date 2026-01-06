@@ -8,7 +8,7 @@ cd /etc/nixos/
 ```
 sudo git init
 ```
-3. Add this repository with a gitmodule
+3. Add this repository as a gitmodule
 ```
 sudo git submodule add https://github.com/woliver99/nixos-system.git nixos-system
 ```
