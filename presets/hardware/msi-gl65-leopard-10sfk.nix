@@ -1,7 +1,7 @@
 # Preset for the GL65 Leopard laptop: https://www.msi.com/Laptop/GL65-Leopard-10SX/Specification
 # Tested on: GL65 Leopard 10SFK-206CA
 
-{ lib, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   # -- Config --
@@ -9,10 +9,33 @@
     ../../nixos-hardware/msi/gl65 # Import from nixos-hardware repository
   ];
 
+  hardware.graphics = { # (Note: use 'hardware.opengl' if on NixOS < 24.05)
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+      libvdpau-va-gl
+    ];
+  };
+
   # Make everything run on the gpu by default
   hardware.nvidia.prime = {
     offload.enable = false;
     sync.enable = true;
+  };
+
+  # --CONDITIONAL VARIABLES --
+  # These will ONLY exist when Sync mode is enabled.
+  # When you switch to "battery-saver" (where sync is false), these vanish automatically.
+  environment.sessionVariables = lib.mkIf config.hardware.nvidia.prime.sync.enable {
+    # 3D Rendering (Vulkan/OpenGL)
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+
+    # Video Decoding (Force apps to use the Nvidia drivers)
+    LIBVA_DRIVER_NAME = "nvidia";   # Tells apps "Use the nvidia-vaapi-driver"
+    NVD_BACKEND = "direct";         # Required for nvidia-vaapi-driver
+    MOZ_DISABLE_RDD_SANDBOX = "1";  # Required for Firefox/Brave to access the GPU
   };
 
   # Enable battery saver specialisation from nixos-hardware

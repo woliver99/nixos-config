@@ -25,8 +25,6 @@ in
   programs.adb.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # Git
-    git
     gh
 
     # IDEs

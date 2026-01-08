@@ -5,6 +5,12 @@
 {
   environment.systemPackages = with pkgs; [
     htop
+    nvtopPackages.full
+    
+    wget
+    git
+
+    zip
     unzip
   ];
 }
