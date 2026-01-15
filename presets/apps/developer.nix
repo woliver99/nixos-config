@@ -2,11 +2,6 @@
 
 { pkgs, config, ... }:
 
-let
-  unstable = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-  }) { config = config.nixpkgs.config; };
-in
 {
   imports = [
     ./full.nix
@@ -22,6 +17,7 @@ in
     defaultNetwork.settings.dns_enabled = true;
   };
 
+  programs.direnv.enable = true;
   programs.adb.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -29,12 +25,12 @@ in
 
     # IDEs
     android-studio
-    unstable.antigravity-fhs
     jetbrains.idea-oss
     arduino-ide
     vscode
 
-    unstable.flutter
+    #unstable.flutter
+    #unstable.antigravity-fhs
 
     # Python
     python313
