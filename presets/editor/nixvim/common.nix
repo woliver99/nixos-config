@@ -14,9 +14,17 @@ in
 {
   imports = [ nixvim.nixosModules.nixvim ];
 
+  # Set as default
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+
+    globals.mapleader = " ";
 
     opts = {
       number = true;
@@ -56,7 +64,7 @@ in
       }
       {
         mode = "n";
-        key = "<C-n>";
+        key = "<leader>e";
         action = "<cmd>NvimTreeToggle<CR>";
         options.desc = "Toggle Explorer";
       }

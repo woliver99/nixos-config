@@ -15,6 +15,8 @@
     ntfs3g # Needed for using gparted on ntfs partitions
 
     # -- GUI --
+    alacritty # Better Terminal
+
     gparted
     localsend
     filezilla

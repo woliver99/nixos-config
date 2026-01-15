@@ -18,7 +18,6 @@
       end
 
       local function paste()
-        -- [!] FIX: We used double quotes ("") here to avoid closing the Nix string
         return {vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("")}
       end
 
@@ -34,8 +33,7 @@
         },
       }
 
-      -- Optional: Automatically copy to system clipboard on any yank
-      -- vim.opt.clipboard:append("unnamedplus")
+      vim.opt.clipboard:append("unnamedplus")
     '';
   };
 }

@@ -1,8 +1,31 @@
 # This configuration contains only essential apps that every system should have
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
+  programs.tmux = {
+    enable = true;
+    shortcut = lib.mkOverride 990 "a";
+    aggressiveResize = true;
+    baseIndex = 1;
+    newSession = true;
+    escapeTime = 0;
+    clock24 = true;
+    historyLimit = 50000;
+
+    plugins = with pkgs; [
+      tmuxPlugins.better-mouse-mode
+    ];
+
+    extraConfig = ''
+      # Enable clipboard (OSC 52 Support)
+      set -s set-clipboard on
+
+      # Fix scrolling
+      set -g mouse on
+    '';
+  };
+
   environment.systemPackages = with pkgs; [
     htop
 
