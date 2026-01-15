@@ -29,8 +29,6 @@ in
       nixfmt-rfc-style
     ];
 
-    clipboard.providers.wl-copy.enable = true;
-
     keymaps = [
       {
         mode = "n";
@@ -56,6 +54,12 @@ in
         action = "\"_d";
         options.desc = "Delete without copying";
       }
+      {
+        mode = "n";
+        key = "<C-n>";
+        action = "<cmd>NvimTreeToggle<CR>";
+        options.desc = "Toggle Explorer";
+      }
     ];
 
     colorschemes.catppuccin = {
@@ -65,7 +69,33 @@ in
 
     plugins = {
       # File Explorer
-      nvim-tree.enable = true;
+      nvim-tree = {
+        enable = true;
+        settings = {
+          filters.dotfiles = false;
+          disable_netrw = true;
+          hijack_cursor = true;
+          sync_root_with_cwd = true;
+          update_focused_file = {
+            enable = true;
+            update_root = false;
+          };
+          view = {
+            side = "right";
+            width = 30;
+            preserve_window_proportions = true;
+          };
+          renderer = {
+            root_folder_label = false;
+            highlight_git = true;
+            indent_markers.enable = true;
+            icons.glyphs.git = {
+              unstaged = "";
+              #untracked = "";
+            };
+          };
+        };
+      };
 
       # Tab Bar
       bufferline.enable = true;
@@ -84,6 +114,9 @@ in
 
       # Show git changes
       gitsigns.enable = true;
+
+      # Ask for sudo password when needed
+      vim-suda.enable = true;
 
       # Syntax Highlighting
       treesitter = {
@@ -157,7 +190,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    wl-clipboard
     gcc
     ripgrep
 
