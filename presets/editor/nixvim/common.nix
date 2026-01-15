@@ -14,12 +14,6 @@ in
 {
   imports = [ nixvim.nixosModules.nixvim ];
 
-  # Set as default
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -207,5 +201,9 @@ in
 
     # Formatters
     nixfmt-rfc-style
+
+    # vi and vim alias
+    (pkgs.writeShellScriptBin "vi" "exec nvim \"$@\"")
+    (pkgs.writeShellScriptBin "vim" "exec nvim \"$@\"")
   ];
 }
