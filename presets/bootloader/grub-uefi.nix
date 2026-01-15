@@ -1,4 +1,4 @@
-# Grub bootloader preset
+# Grub UEFI bootloader preset
 
 { ... }:
 

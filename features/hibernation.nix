@@ -1,4 +1,4 @@
-# This configuration allows the computer hibernate
+# This configuration allows the computer hibernate (DOES NOT WORK ON ANY OTHER COMPUTERS BUT MINE)
 
 { pkgs, ... }:
 

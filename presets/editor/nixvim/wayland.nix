@@ -4,7 +4,7 @@
 
 {
   imports = [
-    ./oliver
+    ./common.nix
   ];
 
   programs.nixvim.clipboard.providers.wl-copy.enable = true;
