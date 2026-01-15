@@ -1,6 +1,6 @@
 # This configuration contains apps all apps needed for a complete developer desktop experience
 
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   imports = [

@@ -8,4 +8,7 @@
 
   # Enable the QEMU Guest Agent for proper communication with Proxmox.
   services.qemuGuest.enable = true;
+  
+  # Tmux shortcut for ssh
+  programs.tmux.shortcut = "b";
 }
