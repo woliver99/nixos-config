@@ -1,3 +1,5 @@
+# My nixvim config with wl-clipboard
+
 { pkgs, ... }:
 
 {

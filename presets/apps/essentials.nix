@@ -5,7 +5,7 @@
 {
   environment.systemPackages = with pkgs; [
     htop
-    nvtopPackages.full
+    nvtopPackages.full # Allows you to check gpu usage, could be considered bloat but idc
     
     wget
     git

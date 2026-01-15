@@ -1,4 +1,4 @@
-# Installs neovim and configures it as the default editor
+# Common files for my nixvim config
 
 { pkgs, ... }:
 
