@@ -85,8 +85,14 @@ in
       # Syntax Highlighting
       treesitter = {
         enable = true;
+        nixGrammars = true;
+        grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+
         settings = {
-          highlight.enable = true;
+          highlight = {
+            enable = true;
+            disable = [ "gitcommit" ];
+          };
           indent.enable = true;
           folding.enable = true;
         };
