@@ -82,6 +82,9 @@ in
       # Surround visual selections easily (TODO)
       # nvim-surround.enable = true;
 
+      # Show git changes
+      gitsigns.enable = true;
+
       # Syntax Highlighting
       treesitter = {
         enable = true;
