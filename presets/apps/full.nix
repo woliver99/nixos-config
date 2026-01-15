@@ -11,6 +11,7 @@
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
+    nvtopPackages.full # View GPU usage
     ntfs3g # Needed for using gparted on ntfs partitions
 
     # -- GUI --
