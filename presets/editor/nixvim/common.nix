@@ -28,6 +28,9 @@ in
     };
 
     extraPackages = with pkgs; [
+      tree-sitter
+      nodejs
+
       nixfmt-rfc-style
     ];
 
