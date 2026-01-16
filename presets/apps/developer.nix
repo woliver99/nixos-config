@@ -17,7 +17,6 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
-  programs.direnv.enable = true;
   programs.adb.enable = true;
 
   environment.systemPackages = with pkgs; [

@@ -3,6 +3,8 @@
 { pkgs, lib, ... }:
 
 {
+  programs.direnv.enable = true;
+
   programs.tmux = {
     enable = true;
     shortcut = lib.mkOverride 990 "a";
