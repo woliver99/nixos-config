@@ -1,18 +1,25 @@
 # Preset for the GL65 Leopard laptop: https://www.msi.com/Laptop/GL65-Leopard-10SX/Specification
 # Tested on: GL65 Leopard 10SFK-206CA
 
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   # --- HELPER FUNCTIONS (From the Docs) ---
   # These create a high-priority "fake" package that contains only the modified desktop file.
-  patchDesktop = pkg: appName: from: to: lib.hiPrio (
-    pkgs.runCommand "$patched-desktop-entry-for-${appName}" {} ''
-      ${pkgs.coreutils}/bin/mkdir -p $out/share/applications
-      ${pkgs.gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
-    ''
-  );
-  
+  patchDesktop =
+    pkg: appName: from: to:
+    lib.hiPrio (
+      pkgs.runCommand "$patched-desktop-entry-for-${appName}" { } ''
+        ${pkgs.coreutils}/bin/mkdir -p $out/share/applications
+        ${pkgs.gnused}/bin/sed 's#${from}#${to}#g' < ${pkg}/share/applications/${appName}.desktop > $out/share/applications/${appName}.desktop
+      ''
+    );
+
   # Function to wrap an app with nvidia-offload
   GPUOffloadApp = pkg: desktopName: patchDesktop pkg desktopName "^Exec=" "Exec=nvidia-offload ";
 in
@@ -24,8 +31,8 @@ in
 
   # Make everything run on the gpu by default
   #hardware.nvidia.prime.offload.enable = false;
-  
-  environment.systemPackages = lib.mkIf (! (lib.elem "battery-saver" config.system.nixos.tags)) [
+
+  environment.systemPackages = lib.mkIf (!(lib.elem "battery-saver" config.system.nixos.tags)) [
     (GPUOffloadApp pkgs.steam "steam")
   ];
 
@@ -51,6 +58,7 @@ in
   boot.kernelParams = [
     "nvme_core.default_ps_max_latency_us=0" # Fix NVMe SSD timeouts (prevent deep sleep)
     "pcie_aspm=off" # Uses more power but testing if this fixes a crash on boot
+    "acpi_enforce_resources=lax" # This fixes the motherboard crash when Native ASPM is Enabled.
   ];
 
   # Disable all sleep and suspend states since it causes many problems with the Nvidia drivers
