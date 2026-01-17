@@ -1,6 +1,6 @@
 # Enables the Gnome desktop environment
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Currently copyous is not in the nix repo but will be added soon: https://github.com/NixOS/nixpkgs/pull/469919
@@ -19,13 +19,26 @@
   # Enable GNOME networking
   networking.networkmanager.enable = true;
 
-  # GNOME extensions (enable them with the extensions app)
+  # Exclude GNOME apps
+  environment.gnome.excludePackages = [
+    pkgs.gnome-console # Use Alacritty instead
+  ];
+
   environment.systemPackages = with pkgs; [
+    alacritty # Better Terminal
+
+    # GNOME extensions (enable them with the extensions app)
     gnomeExtensions.copyous
     gnomeExtensions.appindicator
     gnomeExtensions.gsconnect
     gnomeExtensions.color-picker
   ];
+
+  # Extension to add "open in console" for alacritty
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "alacritty";
+  };
 
   networking.firewall = {
     allowedTCPPortRanges = [
@@ -60,7 +73,16 @@
       {
         settings = {
           "org/gnome/desktop/wm/preferences" = {
-            button-layout = ":minimize,maximize,close";
+            button-layout = ":minimize,maximize,close"; # Add minimize maximize and close to windows
+          };
+
+          "org/gnome/settings-daemon/plugins/media-keys" = {
+            home = [ "<Super>e" ]; # Super+E for Nautilus
+          };
+
+          "org/gnome/shell/keybindings" = {
+            show-screenshot-ui = [ "<Shift><Super>s" ]; # Shift+Super+S for screenshot
+            toggle-message-tray = lib.gvariant.mkEmptyArray lib.gvariant.type.string; # Unbind Super+V so it can be used in copyous
           };
         };
       }
