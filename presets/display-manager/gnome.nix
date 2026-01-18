@@ -34,6 +34,11 @@
     gnomeExtensions.color-picker
   ];
 
+  # Open explorer from terminal shortcut
+  programs.bash.shellAliases = {
+    explorer = "nautilus . > /dev/null 2>&1 &";
+  };
+
   # Extension to add "open in console" for alacritty
   programs.nautilus-open-any-terminal = {
     enable = true;
