@@ -5,6 +5,6 @@
 {
   programs.bash.shellAliases = {
     editconfig = "cd /etc/nixos/";
-    explorer = "(xdg-open . > /dev/null 2>&1 &";
+    explorer = "(xdg-open . > /dev/null 2>&1 &)";
   };
 }
